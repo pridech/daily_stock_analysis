@@ -33,11 +33,16 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  analyze:
+ analyze:
     runs-on: ubuntu-latest
     # 添加超时限制，防止任务卡死
     timeout-minutes: 30
-    
+    env:
+        STOCKS: ${{ inputs.stocks }}
+        AIHUBMIX_KEY: ${{ secrets.AIHUBMIX_KEY }}
+        AIHUBMIX_ENABLED: ${{ secrets.AIHUBMIX_ENABLED }}
+        LLM_CHANNELS: ${{ secrets.LLM_CHANNELS }}
+        LITELLM_MODEL: ${{ secrets.LITELLM_MODEL }}
     steps:
       - name: 随机延迟（避免固定时间访问）
         run: sleep $((RANDOM % 60))  # 随机延迟0-60秒启动
