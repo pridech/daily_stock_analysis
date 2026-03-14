@@ -8,7 +8,7 @@ on:
   # 手动触发
   workflow_dispatch:
     inputs:
-    stocks:
+      stocks:
         description: "股票代码，英文逗号分隔（如：600519,000001）"
         required: true
         default: "600519"
